@@ -60,7 +60,7 @@ const HeroContent = () => {
           <a href="https://www.linkedin.com/in/komal-khokale-4a3ba7278/" target="_blank">
             <FaLinkedin />
           </a>
-          <a href="https://x.com/komalkhokale" target="_blank">
+          <a href="https://x.com/khokale_komal" target="_blank">
             <FaTwitter />
           </a>
         </div>
