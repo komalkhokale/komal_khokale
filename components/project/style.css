@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=News+Cycle:wght@400;700&family=Smooch+Sans:wght@100..900&display=swap");
+
+
+.project{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 100px 50px 100px;
+    border-top: 1px solid rgb(201, 201, 201);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.project:last-of-type{
+    border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+.project:hover{
+    opacity: 0.5;
+}
+
+.project:hover h2{
+    transform: translateX(-10px);
+}
+
+.project:hover p{
+    transform: translateX(10px);
+}
+
+.project h2{
+    font-size: 50px;
+    margin: 0px;
+    font-weight: 400;
+    transition: all 0.4s;
+    font-family: "Smooch Sans", sans-serif;
+}
+
+.project p{
+    transition: all 0.4s;
+    font-weight: 300;
+    font-family: "Smooch Sans", sans-serif;
+    font-size: 1.5vw;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .project {
+      padding: 40px 60px;
+    }
+  
+    .project h2 {
+      font-size: 42px;
+    }
+  
+    .project p {
+      font-size: 2.5vw;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    .project {
+      padding: 30px 30px;
+      flex-direction: column;        /* 👈 stack */
+      align-items: flex-start;
+      gap: 12px;
+    }
+  
+    .project h2 {
+      font-size: 36px;
+    }
+  
+    .project p {
+      font-size: 4vw;
+    }
+  
+    /* hover translate disable on touch */
+    .project:hover h2,
+    .project:hover p {
+      transform: none;
+    }
+  }
+  
+  /* Small Phones */
+  @media (max-width: 480px) {
+    .project {
+      padding: 24px 20px;
+    }
+  
+    .project h2 {
+      font-size: 32px;
+    }
+  
+    .project p {
+      font-size: 4.5vw;
+    }
+  }
+  

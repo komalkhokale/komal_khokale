@@ -1,0 +1,360 @@
+@import url("https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=News+Cycle:wght@400;700&family=Smooch+Sans:wght@100..900&display=swap");
+
+.about-container {
+  padding: 10vw;
+  font-family: "Cause", sans-serif;
+}
+
+/* ORANGE HIGHLIGHT */
+.about-container span {
+  color: #ff8a00;
+  font-weight: 600;
+}
+
+/* ---------------- ABOUT INTRO ---------------- */
+.about p {
+  text-align: center;
+  max-width: 80vw;
+  margin: 0 auto;
+  font-size: 4vw;          /* 🔒 SAME AS YOUR ORIGINAL */
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+
+
+/* ---------------- REPO BUTTON ---------------- */
+.repo-btn {
+  margin: 3vw auto;
+  padding: 15px 26px;
+ 
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+ margin-left: 33vw;
+  color: white;
+  display: inline-flex;      /* ✅ FIX */
+  align-items: center;
+  gap: 12px;
+  width: fit-content;        /* ✅ FIX */
+
+  background: linear-gradient(
+    135deg,
+    #ff8a00,
+    #e52e71,
+    #ffbb00,
+    #d41fff
+  );
+  background-size: 300% 300%;
+  animation: gradientFlow 6s ease infinite;
+
+  box-shadow: 0 8px 22px rgba(229, 46, 113, 0.45);
+}
+
+/* ---------------- SKILLS ---------------- */
+.skills-head h1 {
+  font-size: 5vw;
+  border-top: 1px solid #cccccc9d;
+  padding-top: 3vw;
+  font-weight: 900;
+}
+
+.skills-head span {
+  color: #ff8a00;
+  font-weight: 900;
+}
+
+.skills-head p {
+  font-size: 2vw;
+  margin-top: 2vw;
+}
+
+/* ORANGE LEFT BORDER */
+.sub_heading {
+  margin: 5vw 0 2vw 0;
+  padding: 10px 20px;
+  font-size: 2.5vw;
+  font-weight: 600;
+  border-left: 4px solid #ff8a00;
+  display: inline-block;
+}
+
+.skill-box p {
+  font-size: 2vw;
+  text-transform: capitalize;
+}
+
+/* SKILL ICONS */
+.img {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+}
+
+.img img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+}
+
+/* ---------------- EDUCATION ---------------- */
+.education-section {
+  padding: 50px 0;
+  margin-top: 4vw;
+  border-top: 1px solid #cccccc9d;
+}
+
+.edu-heading {
+  font-size: 5vw;
+  margin-bottom: 40px;
+  font-weight: 900;
+}
+
+.edu-heading span {
+  color: #ff6b00;
+  font-weight: 900;
+}
+
+.timeline {
+  position: relative;
+  margin-left: 20px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 40px;
+}
+
+.circle {
+  width: 16px;
+  height: 16px;
+  background: #ff6b00;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 6px;
+}
+
+.content {
+  background: #ffffff0a;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border-left: 4px solid #ff6b00;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+}
+
+.edu-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.year {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.college {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.grade {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.grade span {
+  background: #ff6b00;
+  padding: 4px 12px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+/* ---------------- GRADIENT ANIMATION ---------------- */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.about-goal{
+  margin-top: 4vw;
+  font-size: 2vw;
+  font-weight: 500;
+  text-align: center;
+  max-width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4vw;
+}
+
+.about-goal h2{
+    font-size: 4vw;
+    margin-bottom: 2vw;
+}
+.about-goal p{
+    font-size: 3vw;
+    font-weight: 300;
+}
+
+.about-goal b{
+    color: #ff8a00;
+}
+
+
+
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .about-container {
+    padding: 12vw 8vw;
+  }
+
+  .about p {
+    font-size: 5vw;
+  }
+
+  .repo-btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+  }
+
+  .skills-head h1 {
+    font-size: 6vw;
+  }
+
+  .skills-head p {
+    font-size: 3vw;
+  }
+
+  .sub_heading {
+    font-size: 3.5vw;
+  }
+
+  .skill-box p {
+    font-size: 3vw;
+  }
+
+  .about-goal {
+    font-size: 3vw;
+  }
+
+  .about-goal h2 {
+    font-size: 5vw;
+  }
+
+  .about-goal p {
+    font-size: 4vw;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 14vw 6vw;
+  }
+
+  .about p {
+    font-size: 6vw;
+    max-width: 100%;
+  }
+
+  .repo-btn {
+    font-size: 1rem;
+    padding: 14px 22px;
+  }
+
+  .skills-head h1,
+  .edu-heading {
+    font-size: 7vw;
+  }
+
+  .skills-head p {
+    font-size: 4vw;
+  }
+
+  .sub_heading {
+    font-size: 4.5vw;
+  }
+
+  .skill-box p {
+    font-size: 4vw;
+  }
+
+  .img {
+    justify-content: center;
+    gap: 4vw;
+  }
+
+  .img img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .about-goal h2 {
+    font-size: 6vw;
+  }
+
+  .about-goal p {
+    font-size: 4.5vw;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .about-container{
+    padding-top: 25vw;
+  }
+  .about p {
+    font-size: 7vw;
+    text-transform: capitalize;
+    max-width: fit-content;
+  }
+
+  .skills-head h1 {
+    font-size: 8vw;
+    margin-top: 3rem;
+    padding-top: 3rem;
+  }
+  
+  .sub_heading {
+    font-size: 5vw;
+  }
+
+  .skill-box p {
+    font-size: 4.5vw;
+  }
+  .skill-box {
+    margin-bottom: 1rem;
+  }
+
+  .about-goal h2 {
+    font-size: 6.5vw;
+  }
+
+  .about-goal p {
+    font-size: 5vw;
+    text-transform: capitalize;
+  }
+  .repo-btn{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+

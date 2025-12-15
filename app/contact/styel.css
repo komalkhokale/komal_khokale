@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=News+Cycle:wght@400;700&family=Smooch+Sans:wght@100..900&display=swap");
+
+  .contact {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 7vw;
+    padding-block: 10vw;
+    
+  box-sizing: border-box;
+  }
+  
+ .contact h1{
+    font-family: "Smooch Sans", sans-serif;
+    font-size: 20vw;
+    text-transform: capitalize;
+    font-weight: 800;
+    line-height: 0.8;
+    letter-spacing: 7;
+}
+  
+  /* Links */
+  .link {
+    display: inline-block;
+    margin: 0 8px;
+    /* font-weight: 600; */
+    text-decoration: none;
+    position: relative;
+    will-change: transform;
+  }
+  
+  /* underline */
+  .link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+  
+  .link:hover::after {
+    width: 100%;
+  }
+  
+  /* Colors */
+  .mail {
+    color: #f97316;
+  }
+  
+  .x {
+    color: #1da1f2;
+  }
+  
+  .linkedin {
+    color: #0a66c2;
+  }
+  
+  /* Glow */
+  .mail:hover {
+    text-shadow: 0 0 12px rgba(249, 115, 22, 0.6);
+  }
+  
+  .x:hover {
+    text-shadow: 0 0 12px rgba(29, 161, 242, 0.6);
+  }
+  
+  .linkedin:hover {
+    text-shadow: 0 0 12px rgba(10, 102, 194, 0.6);
+  }
+  
+  /* Cursor */
+  .cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+  }
+  
+  .cursor-ring {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 2px solid white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+  }
+  
+
+
+  /* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .contact {
+    padding-inline: 6vw;
+    padding-block: 14vw;
+  }
+
+  .contact h1 {
+    font-size: 22vw;
+    line-height: 0.85;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    min-height: auto;          
+    padding: 20vw 1rem;        
+    margin: 0;                
+    align-items: flex-start;  
+  }
+
+  .contact h1 {
+    font-size:10rem;          
+    line-height: 0.95;
+    text-align: left;
+  }
+
+  .link {
+    font-size: 8rem;
+  }
+}
+
+
+
+/* Touch devices – cursor disable */
+@media (hover: none) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
