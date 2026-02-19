@@ -15,7 +15,7 @@ const projectData = {
     title: "AI Dashboard Design",
     description:
       "A modern AI dashboard for analytics and real-time monitoring.",
-    images: ["/dashboard.png"],
+    images: ["/cs1.png"],
   },
 };
 

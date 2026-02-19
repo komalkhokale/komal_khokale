@@ -264,7 +264,7 @@ const AboutContent = () => {
       <section className="case-section">
         <div className="case-grid">
           <Link href="/case-study/case1" className="case-card">
-            <img src="/2.png" alt="case study" />
+            <img src="/cs2.png" alt="case study" />
             <div className="case-overlay">
               <button className="case-btn">
                 View Case Study <span>↗</span>
@@ -273,7 +273,7 @@ const AboutContent = () => {
           </Link>
 
           <Link href="/case-study/case2" className="case-card">
-            <img src="/1.png" alt="case study" />
+            <img src="/cs1.png" alt="case study" />
             <div className="case-overlay">
               <button className="case-btn">
                 View Case Study <span>↗</span>

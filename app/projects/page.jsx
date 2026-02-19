@@ -338,7 +338,7 @@ const folderData = [
   { 
     id: "03", name: "App Design", variant: "variant-2", 
     link: "/app-design",
-    images: ["/app1.png", "/app2.png", "/app3.png"] 
+    images: ["/r1.png", "/s1.png", "/p1.png"] 
   },
   { 
     id: "04", name: "Web Animations", variant: "variant-3", 

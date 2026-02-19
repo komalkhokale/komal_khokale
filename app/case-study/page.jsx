@@ -2,8 +2,8 @@ import Link from "next/link";
 import "./case.css";
 
 const projects = [
-  { id: "case1", name: "Human Safety Mobile Application", image: "/2.png" },
-  { id: "case2", name: "Game Page", image: "/1.png" },
+  { id: "case1", name: "Human Safety Mobile Application", image: "/cs2.png" },
+  { id: "case2", name: "Game Page", image: "/cs1.png" },
   
 ];
 
