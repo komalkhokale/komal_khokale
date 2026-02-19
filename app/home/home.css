@@ -25,6 +25,10 @@
   border-top-right-radius: 45%;
   overflow: hidden;
   margin-top: 2vw;
+  
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.35),
+    inset 0 0 8px rgba(255, 255, 255, 0.18);
 }
 
 /* Gradient border */
@@ -36,11 +40,15 @@
   border-top-right-radius: 45%;
   padding: 4px;
 
-  background: linear-gradient(135deg, #ff8a00, #e52e71);
+  background: linear-gradient(135deg, #000000, #828282);
 
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#000000 0 0) content-box, linear-gradient(#000000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.35),
+    inset 0 0 8px rgba(255, 255, 255, 0.18);
 }
 
 /* Image */
@@ -50,6 +58,10 @@
   height: auto;
   border-top-left-radius: 50%;
   border-top-right-radius: 45%;
+  
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.35),
+    inset 0 0 8px rgba(255, 255, 255, 0.18);
 }
 
 /* Right content */
@@ -77,62 +89,69 @@
   opacity: 0.8;
 }
 
+
 .right button {
   position: relative;
-  padding: 15px 26px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 8px;
-  border: none;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+  border-radius: 10px;
   cursor: pointer;
-  color: white;
   overflow: hidden;
 
-  background: linear-gradient(135deg, #ff8a00, #e52e71, #ffbb00, #d41fff);
-  background-size: 300% 300%;
-  animation: gradientFlow 6s ease infinite;
-
-  box-shadow: 0 8px 22px rgba(229, 46, 113, 0.45);
-  transition: all 0.3s ease;
-}
-
-/* SHINE LINE */
-.right button::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
+  /* 🔥 animated inner gradient */
   background: linear-gradient(
     120deg,
-    transparent,
-    rgba(255, 255, 255, 0.7),
-    transparent
+    #0a0a0a,
+    #1c1c1c,
+    #000000,
+    #2a2a2a
   );
-  transform: skewX(-20deg);
-  transition: 0.6s ease;
+  background-size: 300% 300%;
+  animation: innerFlow 6s ease infinite;
+
+  /* white border stays same */
+  border: 1.6px solid rgba(100, 100, 100, 0.75);
+
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.35),
+    inset 0 0 8px rgba(255, 255, 255, 0.18);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* HOVER → SHINE MOVE */
-.right button:hover::after {
-  left: 150%;
+/* 🌫 outer glow */
+.right button::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.4),
+    transparent 70%
+  );
+  filter: blur(18px);
+  opacity: 0.9;
+  z-index: -1;
 }
 
-/* HOVER GLOW + LIFT */
+/* hover polish – NO WHITE FILL */
 .right button:hover {
-  transform: translateY(-4px) scale(1.04);
-  box-shadow: 0 14px 32px rgba(229, 46, 113, 0.65);
+  transform: scale(1.05);
+  box-shadow:
+    0 0 20px rgba(63, 63, 63, 0.55),
+    inset 0 0 12px rgba(101, 101, 101, 0.25);
 }
 
-/* CLICK EFFECT */
+/* click */
 .right button:active {
   transform: scale(0.97);
-  box-shadow: 0 6px 16px rgba(229, 46, 113, 0.4);
 }
 
-/* Moving gradient animation */
-@keyframes gradientFlow {
+/* 🎞 gradient animation */
+@keyframes innerFlow {
   0% {
     background-position: 0% 50%;
   }
@@ -143,6 +162,7 @@
     background-position: 0% 50%;
   }
 }
+
 
 
 .social-links {
@@ -288,3 +308,6 @@
     object-fit: cover;
   }
 }
+
+
+

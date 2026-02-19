@@ -12,8 +12,9 @@
   font-family: "Smooch Sans", sans-serif;
   text-transform: uppercase;
 }
-.projects-container span {
-  color: #ff8c00;
+
+h1 span {
+  color: #24a800;
 }
 .curve-text {
   position: relative;

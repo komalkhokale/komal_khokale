@@ -5,6 +5,7 @@ import "./home.css";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
+import Link from "next/link";
 
 const HeroContent = () => {
   return (
@@ -39,9 +40,9 @@ const HeroContent = () => {
         <h4 className="typing-text">
           <Typewriter
             words={[
-              "A Full-Stack Developer.",
+              
               "A UI/UX Designer.",
-              "I Build Clean & Smooth Interfaces.",
+              "A Graphics Designer."
             ]}
             loop={0}
             cursor
@@ -65,7 +66,8 @@ const HeroContent = () => {
           </a>
         </div>
 
-        <motion.button
+       <div>
+       <motion.button
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -75,7 +77,18 @@ const HeroContent = () => {
             rel="noopener noreferrer"
             className="resume-btn"
           >Download Resume</a>
+        </motion.button> &nbsp; &nbsp; &nbsp; &nbsp;
+
+        <motion.button
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.95 }}
+        >
+           <Link href="https://www.figma.com/design/7QphQaiOjdlg5ox2VeIIrc/All-Designs?node-id=3-3423&t=A2rJliOaavvmsoxX-1" target="_blank" className="resume-btn">
+           See Figma File
+           </Link>
         </motion.button>
+       </div>
+
       </motion.div>
 
     </div>
