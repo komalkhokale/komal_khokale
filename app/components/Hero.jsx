@@ -404,7 +404,7 @@ export default function Hero() {
 
                 <div className="mt-5 flex items-center justify-center gap-3 lg:justify-start">
                   <SocialLink
-                    href="https://github.com/komalkhokale2004"
+                    href="https://github.com/komalkhokale"
                     label="GitHub"
                     icon={<FaGithub size={16} />}
                   />
