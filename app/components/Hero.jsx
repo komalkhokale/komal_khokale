@@ -585,7 +585,7 @@ function ResumeButton() {
   return (
     <motion.a
       ref={ref}
-      href="/komal-khokale-resume.pdf"
+      href="/Full-Stack-Komal.pdf"
       target="_blank"
       rel="noopener noreferrer"
       onMouseMove={handleMove}
