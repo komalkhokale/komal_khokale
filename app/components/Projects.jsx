@@ -392,6 +392,11 @@ export default function Projects() {
       id="projects"
       className="relative overflow-hidden bg-[#100E0C] px-5 py-24 text-[#F4EFE6] sm:px-8 sm:py-28 lg:px-10 lg:py-32"
     >
+      <span
+        ref={railRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 z-20 h-full w-[2px] origin-top bg-[#E8B94B]/70"
+      />
       <style>{`
         .font-display { font-family: var(--font-fraunces, ui-serif, Georgia, serif); }
         .font-code { font-family: var(--font-mono, ui-monospace, "SF Mono", monospace); }
@@ -408,11 +413,6 @@ export default function Projects() {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -right-40 top-[15%] h-[420px] w-[420px] rounded-full bg-[#E8B94B] blur-[170px]"
         />
-      </div>
-
-      {/* Scroll progress rail */}
-      <div className="pointer-events-none absolute left-[7.5%] top-0 hidden h-full w-px lg:block">
-        <div ref={railRef} className="h-full w-px bg-[#E8B94B]" />
       </div>
 
       {/* Corner registration marks */}

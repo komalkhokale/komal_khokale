@@ -474,13 +474,7 @@ export default function Hero() {
 
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[20%] bg-gradient-to-t from-[#100E0C] via-[#100E0C]/50 to-transparent" />
 
-                {/* Hover reveal — the frame itself is a shortcut to the work */}
-                <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center bg-[#100E0C]/0 opacity-0 transition-all duration-300 group-hover:bg-[#100E0C]/45 group-hover:opacity-100">
-                  <span className="font-code flex items-center gap-2 rounded-full border border-[#E8B94B]/50 bg-[#100E0C]/85 px-4 py-2 text-xs text-[#F4EFE6] backdrop-blur-md">
-                    view work
-                    <ArrowUpRight size={14} className="text-[#E8B94B]" />
-                  </span>
-                </div>
+               
               </a>
 
               {/* Right content */}

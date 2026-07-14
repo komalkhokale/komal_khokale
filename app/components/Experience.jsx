@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import {
-  ArrowUpRight,
   BriefcaseBusiness,
   CalendarDays,
   MapPin,
@@ -55,7 +54,7 @@ const experiences = [
     number: "03",
     role: "Web Development Intern",
     company: "Probity",
-    duration: "Jan 2024 — Mar 2024",
+    duration: "Dec 2024 — Jan 2025",
     location: "Nashik",
     category: "MERN Stack",
     skills: [
@@ -114,81 +113,117 @@ const experiences = [
 export default function Experience() {
   const sectionRef = useRef(null);
   const railRef = useRef(null);
+  const topbarRef = useRef(null);
+  const headingRef = useRef(null);
+  const copyRef = useRef(null);
+  const listRef = useRef(null);
   const toggleRefs = useRef([]);
+
   const [activeExperience, setActiveExperience] = useState(1);
 
   const activeItem = experiences.find((item) => item.id === activeExperience);
 
   useGSAP(
     () => {
-      gsap.from(".experience-corner", {
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.07,
-        scrollTrigger: { trigger: sectionRef.current, start: "top 85%" },
-      });
+      const section = sectionRef.current;
 
-      gsap.from(".experience-topbar", {
-        opacity: 0,
-        y: 24,
-        duration: 0.7,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 82%",
-        },
-      });
+      if (!section) return;
 
-      gsap.fromTo(
-        railRef.current,
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: "none",
-          transformOrigin: "top",
+      const corners = section.querySelectorAll(".experience-corner");
+      const headingChars =
+        headingRef.current?.querySelectorAll(".experience-char") || [];
+      const items = listRef.current?.querySelectorAll(".experience-item") || [];
+
+      if (corners.length) {
+        gsap.from(corners, {
+          autoAlpha: 0,
+          duration: 0.5,
+          stagger: 0.07,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            end: "bottom 30%",
-            scrub: 0.6,
+            trigger: section,
+            start: "top 85%",
           },
-        },
-      );
+        });
+      }
 
-      gsap.from(".experience-heading .char", {
-        opacity: 0,
-        y: 42,
-        filter: "blur(6px)",
-        stagger: 0.02,
-        duration: 0.7,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".experience-heading",
-          start: "top 84%",
-        },
-      });
+      if (topbarRef.current) {
+        gsap.from(topbarRef.current, {
+          autoAlpha: 0,
+          y: 24,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 82%",
+          },
+        });
+      }
 
-      gsap.from(".experience-copy", {
-        opacity: 0,
-        y: 35,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".experience-copy",
-          start: "top 84%",
-        },
-      });
+      if (railRef.current) {
+        gsap.fromTo(
+          railRef.current,
+          {
+            scaleY: 0,
+          },
+          {
+            scaleY: 1,
+            transformOrigin: "top center",
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 72%",
+              end: "bottom 30%",
+              scrub: 0.6,
+            },
+          },
+        );
+      }
 
-      gsap.from(".experience-item", {
-        opacity: 0,
-        y: 38,
-        stagger: 0.1,
-        duration: 0.75,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".experience-list",
-          start: "top 82%",
-        },
+      if (headingRef.current && headingChars.length) {
+        gsap.from(headingChars, {
+          autoAlpha: 0,
+          y: 42,
+          filter: "blur(6px)",
+          stagger: 0.02,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 84%",
+          },
+        });
+      }
+
+      if (copyRef.current) {
+        gsap.from(copyRef.current, {
+          autoAlpha: 0,
+          y: 35,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: copyRef.current,
+            start: "top 84%",
+          },
+        });
+      }
+
+      if (listRef.current && items.length) {
+        gsap.from(items, {
+          autoAlpha: 0,
+          y: 38,
+          stagger: 0.1,
+          duration: 0.75,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: listRef.current,
+            start: "top 82%",
+          },
+        });
+      }
+
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
       });
     },
     {
@@ -201,19 +236,41 @@ export default function Experience() {
   };
 
   const handleToggleMove = (event, index) => {
-    if (window.innerWidth < 1024) return;
-    const el = toggleRefs.current[index];
-    if (!el) return;
-    const bounds = el.getBoundingClientRect();
+    if (typeof window === "undefined" || window.innerWidth < 1024) {
+      return;
+    }
+
+    const element = toggleRefs.current[index];
+
+    if (!element) return;
+
+    const bounds = element.getBoundingClientRect();
+
     const x = (event.clientX - bounds.left - bounds.width / 2) * 0.4;
+
     const y = (event.clientY - bounds.top - bounds.height / 2) * 0.4;
-    gsap.to(el, { x, y, duration: 0.35, ease: "power3.out" });
+
+    gsap.to(element, {
+      x,
+      y,
+      duration: 0.35,
+      ease: "power3.out",
+      overwrite: true,
+    });
   };
 
   const handleToggleLeave = (index) => {
-    const el = toggleRefs.current[index];
-    if (!el) return;
-    gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.4)" });
+    const element = toggleRefs.current[index];
+
+    if (!element) return;
+
+    gsap.to(element, {
+      x: 0,
+      y: 0,
+      duration: 0.6,
+      ease: "elastic.out(1, 0.4)",
+      overwrite: true,
+    });
   };
 
   return (
@@ -223,94 +280,144 @@ export default function Experience() {
       className="relative overflow-hidden bg-[#100E0C] px-5 py-24 text-[#F4EFE6] sm:px-8 sm:py-28 lg:px-10 lg:py-32"
     >
       <style>{`
-        .font-display { font-family: var(--font-fraunces, ui-serif, Georgia, serif); }
-        .font-code { font-family: var(--font-mono, ui-monospace, "SF Mono", monospace); }
+        .font-display {
+          font-family: var(--font-fraunces, ui-serif, Georgia, serif);
+        }
+
+        .font-code {
+          font-family: var(
+            --font-mono,
+            ui-monospace,
+            "SFMono-Regular",
+            Consolas,
+            monospace
+          );
+        }
       `}</style>
 
-      {/* Giant background number — reflects whichever role is open */}
+      {/* Scroll progress rail */}
+      <span
+        ref={railRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 z-20 h-full w-[2px] origin-top bg-[#E8B94B]/70"
+      />
+
+      {/* Background active number */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden pr-2 sm:pr-6">
         <AnimatePresence mode="wait">
           <motion.span
             key={activeItem ? activeItem.number : "00"}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 0.05, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            initial={{
+              opacity: 0,
+              y: 50,
+            }}
+            animate={{
+              opacity: 0.05,
+              y: 0,
+            }}
+            exit={{
+              opacity: 0,
+              y: -50,
+            }}
+            transition={{
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="font-display select-none text-[42vw] italic leading-none"
-            style={{ WebkitTextStroke: "1px #F4EFE6", color: "transparent" }}
+            style={{
+              WebkitTextStroke: "1px #F4EFE6",
+              color: "transparent",
+            }}
           >
             {activeItem ? activeItem.number : "00"}
           </motion.span>
         </AnimatePresence>
       </div>
 
-      {/* Background lines */}
-      <div className="pointer-events-none absolute inset-0">
+      {/* Background */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute left-[7.5%] top-0 h-full w-px bg-[#F4EFE6]/[0.04]" />
         <div className="absolute left-1/2 top-0 h-full w-px bg-[#F4EFE6]/[0.025]" />
         <div className="absolute right-[7.5%] top-0 h-full w-px bg-[#F4EFE6]/[0.04]" />
 
         <motion.div
-          animate={{ scale: [1, 1.12, 1], opacity: [0.06, 0.14, 0.06] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          animate={{
+            scale: [1, 1.12, 1],
+            opacity: [0.06, 0.14, 0.06],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           className="absolute -right-40 top-[30%] h-[420px] w-[420px] rounded-full bg-[#E8B94B] blur-[165px]"
         />
       </div>
 
-      {/* Scroll progress rail */}
-      <div className="pointer-events-none absolute left-[7.5%] top-0 hidden h-full w-px lg:block">
-        <div ref={railRef} className="h-full w-px bg-[#E8B94B]" />
-      </div>
-
-      {/* Corner registration marks */}
+      {/* Corner marks */}
       <span className="experience-corner pointer-events-none absolute left-4 top-4 h-5 w-5 border-l-2 border-t-2 border-[#E8B94B]/50 sm:left-7 sm:top-6" />
+
       <span className="experience-corner pointer-events-none absolute right-4 top-4 h-5 w-5 border-r-2 border-t-2 border-[#E8B94B]/50 sm:right-7 sm:top-6" />
 
       <div className="relative z-10 mx-auto max-w-[1650px]">
-        {/* Section label */}
-        <div className="experience-topbar flex items-center justify-between border-b border-[#F4EFE6]/10 pb-5">
+        {/* Topbar */}
+        <div
+          ref={topbarRef}
+          className="experience-topbar flex items-center justify-between border-b border-[#F4EFE6]/10 pb-5"
+        >
           <div className="flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-[#E8B94B]" />
+
             <p className="font-code text-[10px] uppercase tracking-[0.3em] text-[#F4EFE6]/45 sm:text-xs">
               Work Experience
             </p>
           </div>
 
           <p className="font-code text-[10px] uppercase tracking-[0.25em] text-[#F4EFE6]/30">
-            03 / experience
+            03 / Experience
           </p>
         </div>
 
-        {/* Compact intro */}
+        {/* Heading */}
         <div className="grid gap-8 border-b border-[#F4EFE6]/10 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:py-14">
-          <div className="experience-heading" style={{ perspective: "600px" }}>
+          <div
+            ref={headingRef}
+            className="experience-heading"
+            style={{
+              perspective: "600px",
+            }}
+          >
             <p className="font-code mb-4 text-[10px] uppercase tracking-[0.3em] text-[#F4EFE6]/35 sm:text-xs">
-              my journey
+              My Journey
             </p>
 
             <h2 className="font-display max-w-[760px] text-[clamp(3rem,5.8vw,6rem)] font-normal italic leading-[0.94] tracking-[-0.03em]">
-              {"Experience".split("").map((char, i) => (
+              {"Experience".split("").map((character, index) => (
                 <span
-                  key={i}
-                  className="char inline-block will-change-transform"
+                  key={`experience-${index}`}
+                  className="experience-char inline-block will-change-transform"
                 >
-                  {char}
+                  {character}
                 </span>
               ))}
+
               <span className="ml-2 text-[#F4EFE6]/22 sm:ml-3">
-                {"& Growth".split("").map((char, i) => (
+                {"& Growth".split("").map((character, index) => (
                   <span
-                    key={i}
-                    className="char inline-block will-change-transform"
+                    key={`growth-${index}`}
+                    className="experience-char inline-block will-change-transform"
                   >
-                    {char === " " ? "\u00A0" : char}
+                    {character === " " ? "\u00A0" : character}
                   </span>
                 ))}
               </span>
             </h2>
           </div>
 
-          <div className="experience-copy max-w-xl lg:justify-self-end">
+          <div
+            ref={copyRef}
+            className="experience-copy max-w-xl lg:justify-self-end"
+          >
             <p className="text-sm leading-7 text-[#F4EFE6]/50 sm:text-base sm:leading-8">
               My journey spans frontend development, full-stack engineering and
               interface design, with a focus on building polished and practical
@@ -319,6 +426,7 @@ export default function Experience() {
 
             <div className="font-code mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] uppercase tracking-[0.22em] text-[#F4EFE6]/30 sm:text-xs">
               <BriefcaseBusiness size={15} className="text-[#E8B94B]" />
+
               <span>Development</span>
               <span className="text-[#F4EFE6]/15">•</span>
               <span>Design</span>
@@ -328,8 +436,8 @@ export default function Experience() {
           </div>
         </div>
 
-        {/* Experience accordion */}
-        <div className="experience-list">
+        {/* Experience list */}
+        <div ref={listRef} className="experience-list">
           {experiences.map((experience, index) => {
             const isActive = activeExperience === experience.id;
 
@@ -338,11 +446,14 @@ export default function Experience() {
                 key={experience.id}
                 className="experience-item relative border-b border-[#F4EFE6]/10"
               >
-                {/* Active-row indicator, glides between rows via shared layout id */}
                 {isActive && (
                   <motion.span
                     layoutId="experience-active-bar"
-                    transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 34,
+                    }}
                     className="absolute -left-4 top-0 hidden h-full w-[3px] bg-[#E8B94B] sm:-left-7 lg:block"
                   />
                 )}
@@ -391,7 +502,9 @@ export default function Experience() {
 
                   <div className="flex justify-end">
                     <span
-                      ref={(el) => (toggleRefs.current[index] = el)}
+                      ref={(element) => {
+                        toggleRefs.current[index] = element;
+                      }}
                       onMouseMove={(event) => handleToggleMove(event, index)}
                       onMouseLeave={() => handleToggleLeave(index)}
                       className={`flex h-10 w-10 items-center justify-center rounded-md border transition-colors duration-300 ${
@@ -408,34 +521,56 @@ export default function Experience() {
                 <AnimatePresence initial={false}>
                   {isActive && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      initial={{
+                        height: 0,
+                        opacity: 0,
+                      }}
+                      animate={{
+                        height: "auto",
+                        opacity: 1,
+                      }}
+                      exit={{
+                        height: 0,
+                        opacity: 0,
+                      }}
                       transition={{
-                        height: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-                        opacity: { duration: 0.3 },
+                        height: {
+                          duration: 0.5,
+                          ease: [0.22, 1, 0.36, 1],
+                        },
+                        opacity: {
+                          duration: 0.3,
+                        },
                       }}
                       className="overflow-hidden"
                     >
                       <div className="pb-8 sm:pb-10">
                         <div className="relative mx-auto max-w-[1220px] rounded-md border border-[#F4EFE6]/10 bg-[#1B1815] p-5 sm:p-7 lg:p-8">
                           <span className="pointer-events-none absolute -left-px -top-px h-4 w-4 border-l-2 border-t-2 border-[#E8B94B]/70" />
+
                           <span className="pointer-events-none absolute -bottom-px -right-px h-4 w-4 border-b-2 border-r-2 border-[#E8B94B]/70" />
 
                           <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-12">
-                            {/* Skills */}
                             <div>
                               <p className="font-code text-[10px] uppercase tracking-[0.28em] text-[#F4EFE6]/30">
-                                tools &amp; technologies
+                                Tools & Technologies
                               </p>
 
                               <div className="mt-4 flex flex-wrap gap-2">
-                                {experience.skills.map((skill, i) => (
+                                {experience.skills.map((skill, skillIndex) => (
                                   <motion.span
                                     key={skill}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: i * 0.04 }}
+                                    initial={{
+                                      opacity: 0,
+                                      y: 10,
+                                    }}
+                                    animate={{
+                                      opacity: 1,
+                                      y: 0,
+                                    }}
+                                    transition={{
+                                      delay: skillIndex * 0.04,
+                                    }}
                                     className="font-code rounded-sm border border-[#F4EFE6]/10 bg-[#100E0C] px-3.5 py-2 text-xs text-[#F4EFE6]/60 transition-colors hover:border-[#E8B94B]/40 hover:text-[#F4EFE6]"
                                   >
                                     {skill}
@@ -444,27 +579,37 @@ export default function Experience() {
                               </div>
                             </div>
 
-                            {/* Contributions */}
                             <div>
                               <p className="font-code text-[10px] uppercase tracking-[0.28em] text-[#F4EFE6]/30">
-                                key contributions
+                                Key Contributions
                               </p>
 
                               <div className="mt-5 space-y-3">
-                                {experience.description.map((item, i) => (
-                                  <motion.div
-                                    key={item}
-                                    initial={{ opacity: 0, x: 14 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: i * 0.05 }}
-                                    className="flex gap-3 rounded-md border border-[#F4EFE6]/[0.06] bg-[#100E0C] px-4 py-3"
-                                  >
-                                    <span className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#E8B94B]" />
-                                    <p className="text-sm leading-6 text-[#F4EFE6]/55 sm:text-[15px]">
-                                      {item}
-                                    </p>
-                                  </motion.div>
-                                ))}
+                                {experience.description.map(
+                                  (item, itemIndex) => (
+                                    <motion.div
+                                      key={item}
+                                      initial={{
+                                        opacity: 0,
+                                        x: 14,
+                                      }}
+                                      animate={{
+                                        opacity: 1,
+                                        x: 0,
+                                      }}
+                                      transition={{
+                                        delay: itemIndex * 0.05,
+                                      }}
+                                      className="flex gap-3 rounded-md border border-[#F4EFE6]/[0.06] bg-[#100E0C] px-4 py-3"
+                                    >
+                                      <span className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#E8B94B]" />
+
+                                      <p className="text-sm leading-6 text-[#F4EFE6]/55 sm:text-[15px]">
+                                        {item}
+                                      </p>
+                                    </motion.div>
+                                  ),
+                                )}
                               </div>
                             </div>
                           </div>
