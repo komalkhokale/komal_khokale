@@ -249,22 +249,7 @@ export default function Hero() {
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#100E0C]" />
 
-        {/* Cursor-following spotlight — desktop only */}
-        <div
-          ref={glowRef}
-          className="pointer-events-none absolute left-0 top-0 z-0 hidden h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 mix-blend-screen lg:block"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(232,185,75,0.16) 0%, rgba(232,185,75,0) 70%)",
-          }}
-        />
-
-        {/* Single warm glow, kept small and deliberate */}
-        <motion.div
-          animate={{ opacity: [0.18, 0.32, 0.18] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none absolute right-[8%] top-[12%] h-[280px] w-[280px] rounded-full bg-[#E8B94B]/10 blur-[130px] sm:h-[380px] sm:w-[380px]"
-        />
+      
 
         {/* Navbar */}
         <header className="hero-navbar absolute left-0 top-0 z-50 w-full px-4 pt-4 sm:px-7 sm:pt-6 lg:px-10">

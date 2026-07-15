@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "lenis/dist/lenis.css";
 import SmoothScroll from "./components/SmoothScroll";
+import Cursor from "./components/Cursor";
 
 
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning> 
+        <Cursor />
         <SmoothScroll>{children}</SmoothScroll>
         </body>
     </html>

@@ -11,16 +11,17 @@ gsap.registerPlugin(ScrollTrigger);
 function LenisController() {
   const pathname = usePathname();
 
-  const lenis = useLenis(() => {
+  const lenis = useLenis((data) => {
     ScrollTrigger.update();
+
+    // Temporary test
+    console.log("Lenis scroll:", Math.round(data.scroll));
   });
 
   useEffect(() => {
     if (!lenis) return;
 
-    lenis.scrollTo(0, {
-      immediate: true,
-    });
+    // console.log("Lenis instance running:", lenis);
 
     const timer = window.setTimeout(() => {
       ScrollTrigger.refresh();
@@ -39,13 +40,11 @@ export default function SmoothScroll({ children }) {
     <ReactLenis
       root
       options={{
-        lerp: 0.055,
+        lerp: 0.025,
         smoothWheel: true,
-        wheelMultiplier: 0.85,
-        touchMultiplier: 1.2,
+        wheelMultiplier: 0.55,
+        touchMultiplier: 1,
         syncTouch: false,
-        orientation: "vertical",
-        gestureOrientation: "vertical",
       }}
     >
       <LenisController />

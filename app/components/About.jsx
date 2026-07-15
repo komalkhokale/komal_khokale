@@ -16,7 +16,7 @@ const headingLines = ["Code with", "creativity."];
 
 const stats = [
   {
-    value: 6,
+    value: 4,
     suffix: "+",
     label: "Major Projects",
     type: "count",
